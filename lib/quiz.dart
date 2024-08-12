@@ -1,4 +1,6 @@
+import 'package:dart_quiz/data/questions.dart';
 import 'package:dart_quiz/questions_screen.dart';
+import 'package:dart_quiz/results_screen.dart';
 import 'package:dart_quiz/start_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +15,8 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   //class variable
-  var activeScreen2 = 'start-screen'; //option 1
-  final List<String> selectedAnswers = [];
+  var activeScreen = 'start-screen'; //option 1
+  List<String> selectedAnswers = [];
   //we are not going to reassign the variable but only manipulate the values in memory
 
   /*
@@ -43,13 +45,20 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'results-screen';
+      });
+    }
   }
 
   void switchScreen() {
     setState(() {
       debugPrint('switching to questions screen');
       //activeScreen = const QuestionsScreen();
-      activeScreen2 = 'questions-screen';
+      activeScreen = 'questions-screen';
     });
   }
 
@@ -73,11 +82,11 @@ class _QuizState extends State<Quiz> {
 
           //child: activeScreen,
 
-          child: activeScreen2 == 'start-screen'
+          child: activeScreen == 'start-screen'
               ? StartScreen(switchScreen)
-              : QuestionsScreen(
-                  onSelectAnswer: chooseAnswer,
-                ),
+              : (activeScreen == 'questions-screen'
+                  ? QuestionsScreen(onSelectAnswer: chooseAnswer)
+                  : const ResultsScreen()),
 
           /*
           child: const StartScreen(),
