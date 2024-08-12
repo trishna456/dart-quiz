@@ -1,13 +1,24 @@
-import 'package:dart_quiz/gradient_container.dart';
+import 'package:dart_quiz/start_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  const color1 = Colors.purple;
-  const color2 = Colors.deepPurpleAccent;
-
-  runApp(const MaterialApp(
-    home: Scaffold(
-      body: GradientContainer(color1: color1, color2: color2),
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 49, 18, 101),
+                  Color.fromARGB(255, 58, 17, 129)
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child:
+                const StartScreen()), //const used at class instantiation (allows Dart to reuse the object)
+      ),
     ),
-  ));
+  );
 }
