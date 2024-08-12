@@ -61,6 +61,13 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void onRestart() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = 'start-screen';
+    });
+  }
+
   @override
   Widget build(context) {
     //option 3 - use if else statements for conditional rendering
@@ -85,7 +92,10 @@ class _QuizState extends State<Quiz> {
               ? StartScreen(switchScreen)
               : (activeScreen == 'questions-screen'
                   ? QuestionsScreen(onSelectAnswer: chooseAnswer)
-                  : ResultsScreen(chosenAnswers: selectedAnswers)),
+                  : ResultsScreen(
+                      chosenAnswers: selectedAnswers,
+                      onRestart: onRestart,
+                    )),
 
           /*
           child: const StartScreen(),
