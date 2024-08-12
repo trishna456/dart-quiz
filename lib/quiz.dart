@@ -14,6 +14,8 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   //class variable
   var activeScreen2 = 'start-screen'; //option 1
+  final List<String> selectedAnswers = [];
+  //we are not going to reassign the variable but only manipulate the values in memory
 
   /*
   Widget? activeScreen; //option 2
@@ -38,6 +40,10 @@ class _QuizState extends State<Quiz> {
     });
   }
   */
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+  }
 
   void switchScreen() {
     setState(() {
@@ -69,7 +75,9 @@ class _QuizState extends State<Quiz> {
 
           child: activeScreen2 == 'start-screen'
               ? StartScreen(switchScreen)
-              : const QuestionsScreen(),
+              : QuestionsScreen(
+                  onSelectAnswer: chooseAnswer,
+                ),
 
           /*
           child: const StartScreen(),
