@@ -14,6 +14,11 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  /*
+  _ tells that this is a private class and can't be used outside this file
+  can also make property names starting with _ which are private to that class
+  */
+
   //class variable
   var activeScreen = 'start-screen'; //option 1
   List<String> selectedAnswers = [];
