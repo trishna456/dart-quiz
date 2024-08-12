@@ -48,7 +48,6 @@ class _QuizState extends State<Quiz> {
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
         activeScreen = 'results-screen';
       });
     }
@@ -86,7 +85,7 @@ class _QuizState extends State<Quiz> {
               ? StartScreen(switchScreen)
               : (activeScreen == 'questions-screen'
                   ? QuestionsScreen(onSelectAnswer: chooseAnswer)
-                  : const ResultsScreen()),
+                  : ResultsScreen(chosenAnswers: selectedAnswers)),
 
           /*
           child: const StartScreen(),
