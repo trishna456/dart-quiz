@@ -12,7 +12,10 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget? activeScreen;
+  //class variable
+  var activeScreen2 = 'start-screen'; //option 1
+
+  Widget? activeScreen; //option 2
 
   @override
   void initState() {
@@ -37,11 +40,14 @@ class _QuizState extends State<Quiz> {
   void switchScreen() {
     setState(() {
       activeScreen = const QuestionsScreen();
+      activeScreen2 = 'questions-screen';
     });
   }
 
   @override
   Widget build(context) {
+    //option 3 - use if else statements for conditional rendering
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -55,9 +61,18 @@ class _QuizState extends State<Quiz> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: activeScreen,
-          //child: const StartScreen(),
-        ), //const used at class instantiation (allows Dart to reuse the object)
+
+          //child: activeScreen,
+
+          child: activeScreen2 == 'start-screen'
+              ? StartScreen(switchScreen)
+              : const QuestionsScreen(),
+
+          /*
+          child: const StartScreen(),
+          const used at class instantiation (allows Dart to reuse the object)
+          */
+        ),
       ),
     );
   }
