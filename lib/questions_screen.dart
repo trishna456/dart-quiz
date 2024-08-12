@@ -16,13 +16,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
   void answerQuestion() {
+    debugPrint('answer selected');
     setState(() {
+      debugPrint('changing state');
       currentQuestionIndex++;
     });
   }
 
   @override
   Widget build(context) {
+    debugPrint("inside questions screen");
     final currentQuestion = questions[currentQuestionIndex];
 
     return SizedBox(
@@ -50,12 +53,16 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             const SizedBox(
               height: 30,
             ),
-            ...currentQuestion.getShuffledAnswers().map((item) {
+            ...currentQuestion.getShuffledAnswers().map((answer) {
               //map yeilds an iterable
               //this becomes a nested list then
               //so use the spread operation
-              return AnswerButton(answerText: item, onTap: answerQuestion);
-            }),
+              debugPrint('got answer $answer');
+              return AnswerButton(
+                answerText: answer,
+                onTap: answerQuestion,
+              );
+            })
           ],
         ),
       ),

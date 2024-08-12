@@ -15,6 +15,7 @@ class _QuizState extends State<Quiz> {
   //class variable
   var activeScreen2 = 'start-screen'; //option 1
 
+  /*
   Widget? activeScreen; //option 2
 
   @override
@@ -24,6 +25,7 @@ class _QuizState extends State<Quiz> {
     activeScreen = StartScreen(switchScreen);
     super.initState();
   }
+  */
 
   /*
   Widget activeScreen = StartScreen(switchScreen);
@@ -39,7 +41,8 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      debugPrint('switching to questions screen');
+      //activeScreen = const QuestionsScreen();
       activeScreen2 = 'questions-screen';
     });
   }
