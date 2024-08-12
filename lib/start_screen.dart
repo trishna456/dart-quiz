@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen(
+  const StartScreen(this.startQuiz,
       {super.key}); //StatelessWidget accepts + also forwards "key" (to the Widget class)
   //const in front of the constructor function: "Unlocks" the usage of const when instantiating the class
+
+  final void Function() startQuiz;
 
   @override
   Widget build(context) {
@@ -11,9 +13,18 @@ class StartScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          //behind the scenes this is quite performance intensive
+          // Opacity(
+          //   opacity: 0.1,
+          //   child: Image.asset(
+          //     'assets/images/quiz-logo.png',
+          //     width: 300,
+          //   ),
+          // ),
           Image.asset(
             'assets/images/quiz-logo.png',
             width: 300,
+            color: const Color.fromARGB(150, 255, 255, 255),
           ),
           const SizedBox(
             height: 80,
@@ -32,7 +43,7 @@ class StartScreen extends StatelessWidget {
             //an alternative constructor function offered by Flutter on this widget
             //this adds an icon to the button
             //instead of child use the label argument
-            onPressed: () {},
+            onPressed: startQuiz,
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.white,
             ),
